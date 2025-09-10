@@ -426,11 +426,11 @@ const MODIFICAR_VENTA = async (req, res) =>{
         }
 
         //:::: SEXTO :::: SI VENTA ANTERIOR NO TENIA FACTURA , FUE PAGADA Y AHORA SE EMITIO FACTURA
-        console.log(':::: SEXTO :::: SI VENTA ANTERIOR NO TENIA FACTURA , FUE PAGADA Y AHORA SE EMITIO FACTURA');
-        if (venta_anterior.estado_documento == 0 && venta.estado_transaccion == 2 && venta.estado_documento == 1) {
-            const iva = Math.floor(venta.bs_total * 0.13 * 100) / 100; 
-            await client.query('UPDATE caja SET bs_iva=bs_iva + $1, bs_saldo_final=bs_saldo_final + $2 WHERE cod_caja=$3',[iva,iva,venta.cod_caja])
-        }
+        // console.log(':::: SEXTO :::: SI VENTA ANTERIOR NO TENIA FACTURA , FUE PAGADA Y AHORA SE EMITIO FACTURA');
+        // if (venta_anterior.estado_documento == 0 && venta.estado_transaccion == 2 && venta.estado_documento == 1) {
+        //     const iva = Math.floor(venta.bs_total * 0.13 * 100) / 100; 
+        //     await client.query('UPDATE caja SET bs_iva=bs_iva + $1, bs_saldo_final=bs_saldo_final + $2 WHERE cod_caja=$3',[iva,iva,venta.cod_caja])
+        // }
 
         //GUARDAMOS LOS DATOS DE VENTA A AGREGAR
         //:::: ULTIMO :::: GUARDAMOS LOS DATOS DE VENTA A AGREGAR
@@ -521,7 +521,8 @@ const actualizar_MovimientoInsumo = async (client, venta, detalles) => {
                                         WHERE mi.cod_venta = $1; `;
     //Ejecutamos la consulta
     const result = await client.query(obtenerDetallesMovimientos, [venta.cod_venta]);
-    const lista_lotes_anteriores = result.rows; console.log('lista_lotes_anteriores: ', lista_lotes_anteriores);
+    const lista_lotes_anteriores = result.rows; 
+    //console.log('lista_lotes_anteriores: ', lista_lotes_anteriores);
     
 
     //:::: PASO 3 :::: ENVIAMOS A MODIFICAR SALIDA
@@ -533,7 +534,7 @@ const actualizar_MovimientoInsumo = async (client, venta, detalles) => {
     console.log('\x1b[36m%s\x1b[0m', ':::: PASO 4 :::: AGREGAMOS NUEVAMENTE LOS NUEVOS LOTES');
     const listaInsumos = await obtenerInsumosVenta(client, detalles); console.log('listaInsumos: ', listaInsumos);
     
-    console.log('lista_lotes_anteriores[0].cod_mov: ', lista_lotes_anteriores[0].cod_mov);
+    //console.log('lista_lotes_anteriores[0].cod_mov: ', lista_lotes_anteriores[0].cod_mov);
     await crear_Salida_de_Detalles(client, listaInsumos, lista_lotes_anteriores[0].cod_mov);
 
     console.log('\x1b[36m%s\x1b[0m', '********************************* FIN ACTUALIZAR MOVIMIENTO INSUMO *********************************');
@@ -610,6 +611,11 @@ const actualizar_MontosCaja = async (client, venta, venta_anterior) => {
                                     bs_saldo_final=$12
                                 WHERE cod_caja = $13; `;
 
+    console.log('********************************');
+                                
+    console.log('PRUEBA IVA: ',iva);
+    console.log('PRUEBA BS_SALDO_FINAL: ' + bs_saldo_final);
+
     await client.query(text_updateCaja,[bs_ingreso, ps_ingreso, banca_ingreso,
                                         bs_egreso, ps_egreso, 
                                         bs_saldo_pre, ps_saldo_pre, 
@@ -617,7 +623,8 @@ const actualizar_MontosCaja = async (client, venta, venta_anterior) => {
                                         bs_bruto, 
                                         descuento, 
                                         iva,
-                                        bs_saldo_final, caja.cod_caja]);
+                                        bs_saldo_final, 
+                                        caja.cod_caja ]);
 
     console.log('\x1b[33m%s\x1b[0m','************************************ FIN ACTUALIZAR MONTOS CAJA ************************************');
     console.log('\x1b[33m%s\x1b[0m','****************************************************************************************************');

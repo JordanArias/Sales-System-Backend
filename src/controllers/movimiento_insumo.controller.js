@@ -525,8 +525,8 @@ const modificar_Entrada = async (client, lote_anterior) => {
     for (const lote of lote_anterior) {
 
         console.log('Antes del UPDATE, existencia:');
-        await client.query('SELECT * FROM insumo WHERE cod_insumo = $1', [lote.cod_insumo])
-            .then(res => console.log(res.rows));
+        // await client.query('SELECT * FROM insumo WHERE cod_insumo = $1', [lote.cod_insumo])
+        //     .then(res => console.log(res.rows));
         console.log('----------------------------------------------------------------------------------');
         // Modificar la existencia de Insumo
         console.log('ACTUALIZAMOS INSUMO');
