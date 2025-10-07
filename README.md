@@ -83,8 +83,7 @@ npm run dev
 ## 📂 Conexión al Frontend
 Este backend se conecta con el Frontend para enviar y recibir datos del sistema:
 🔗 [Sales System Frontend](https://github.com/JordanArias/Sales-System-Frontend) 
-
 ## 👨‍💻 Autor
-** Fabrizio Jordan Arias Marca **
+**Fabrizio Jordan Arias Marca**  
 📧 ariasjordan943@gmail.com  
-🌐 jordandeveloper.netlify.app  
+🌐 [jordandeveloper.netlify.app](https://jordandeveloper.netlify.app)
