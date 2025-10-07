@@ -35,7 +35,7 @@ Este proyecto incluye un **backup completo de la base de datos** con las tablas 
 ```bash
   createdb sistema_ventas
 ```
-#### 3. Importar el backup incluido en la carpeta "proyecto_backend2/database":
+#### 3. Importar el backup incluido en la carpeta "database":
 ```bash
 psql -U postgres -d sistema_restaurante -f ./database/sistema_integrado_backup.sql
 ```
@@ -53,15 +53,15 @@ Contraseña: 1234567 (cifrada con bcrypt)
 ```bash
 git clone https://github.com/JordanArias/Sales-System-Backend.git
 ```
-2. Entrar al directorio:
+#### 2. Entrar al directorio:
 ```bash
 cd Sales-System-Backend
 ```
-3. Instalar dependencias:
+#### 3. Instalar dependencias:
 ```bash
 npm install
 ```
-4. Configurar variables de entorno:
+#### 4. Configurar variables de entorno:
 ```bash
 PORT=3000
 DB_HOST=localhost
@@ -71,11 +71,11 @@ DB_PASSWORD=tu_contraseña
 DB_NAME=sistema_restaurante
 JWT_SECRET=clave_secreta
 ```
-5. Ejecutar el proyecto:
+#### 5. Ejecutar el proyecto:
 ```bash
 npm run dev
 ```
-6. Probar las APIs:
+#### 6. Probar las APIs:
 ```bash
 # Usar Postman o Insomnia para enviar solicitudes a:
 # http://localhost:3000 (o el puerto que configures)
