@@ -30,7 +30,7 @@ Está construido en **Node.js + Express** y maneja toda la **lógica de negocio,
 ---
 ## 🧩 Configuración de la base de datos
 Este proyecto incluye un **backup completo de la base de datos** con las tablas y un usuario administrador ya configurado.
-#### 1. Instalar PostgreSQL (si aún no está instalado).
+#### 1. Instalar PostgreSQL v7.2 en adelante (si aún no está instalado).
 #### 2. Crear la base de datos (si aún no existe):
 ```bash
   createdb sistema_ventas
